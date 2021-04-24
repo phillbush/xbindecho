@@ -1,0 +1,77 @@
+.TH XBINDECHO 1
+.SH NAME
+xbindecho \- echo lines when pressing keys
+.SH SYNOPSIS
+.B xbindecho
+.IR modifiers
+.SH DESCRIPTION
+.B xbindecho
+echoes a string to stdout when a given key is pressed.
+It receives as standard input the list of keys and their corresponding strings, one per line.
+Each input line is composed by a keysym followed by a tab followed by a string to be echoed.
+.B xbindecho
+gets as argument a modifier that should be applied to all key presses.
+.PP
+Keysym names are obtained from by removing the
+.B XK_
+prefix from each name.
+Keysyms are listed on
+.B include/X11/keysymdef.h
+(which is probably relative to the
+.B /usr
+or the
+.B /usr/X11R6
+directory).
+.PP
+.I modifiers
+is a sequence of characters that specify the modifiers
+(such as Mod1, Control, Shift, etc)
+that must be pressed along with the key that generates the keysyms.
+The following characters are recognized:
+.TP
+.B C
+Control.
+.TP
+.B L
+Lock (usually CapsLock).
+.TP
+.B S
+Shift.
+.TP
+.BR 1 " or " A
+Mod1 (usually Alt).
+.TP
+.B 2
+Mod2 (usually NumLock).
+.TP
+.B 3
+Mod3 (usually unbound).
+.TP
+.BR 4 " or " W
+Mod4 (usually Super/Winkey).
+.TP
+.B 5
+Mod5 (usually AltGR).
+.PP
+Keysyms corresponding to uppercase letters should also be modified by Shift
+(along with the modifiers defined at invocation).
+.SH EXAMPLES
+The following shell command echoes
+.RB \(lq menu \(rq
+whenever Alt + m is pressed;
+.RB \(lq options \(rq
+whenever Alt + o is pressed;
+and
+.RB \(lq help \(rq
+whenever Alt + Shift + H is pressed.
+.IP
+.EX
+$ xbindecho A <<EOF
+m	menu
+o	options
+H	help
+EOF
+.EE
+.SH SEE ALSO
+.IR xbuttonecho (1),
+.IR xkeyecho (1)

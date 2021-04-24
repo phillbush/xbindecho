@@ -1,0 +1,62 @@
+.TH XBUTTONECHO 1
+.SH NAME
+xbuttonecho \- echo a line when pressing a mouse button
+.SH SYNOPSIS
+.B xbuttonecho
+.RB [ -r ]
+.I modifiers button string
+.SH DESCRIPTION
+.B xbuttonecho
+echoes a string to stdout when a given mouse button is pressed.
+The first argument is the modifier that needs to be active when pressing the button.
+The second argument is the number of the button that is to be pressed.
+The third argument is the string to be echoed.
+.PP
+The button number must be
+.BR 1 ,
+.BR 2 ,
+or
+.BR 3 ;
+which corresponds to the first (left), second (middle) and third (right) mouse buttons.
+.PP
+.I modifiers
+is a sequence of characters that specify the modifiers
+(such as Mod1, Control, Shift, etc)
+that must be pressed along with the mouse button.
+The following characters are recognized:
+.TP
+.B C
+Control.
+.TP
+.B L
+Lock (usually CapsLock).
+.TP
+.B S
+Shift.
+.TP
+.BR 1 " or " A
+Mod1 (usually Alt).
+.TP
+.B 2
+Mod2 (usually NumLock).
+.TP
+.B 3
+Mod3 (usually unbound).
+.TP
+.BR 4 " or " W
+Mod4 (usually Super/Winkey).
+.TP
+.B 5
+Mod5 (usually AltGR).
+.PP
+.SH EXAMPLES
+The following command echoes
+.RB \(lq menu \(rq
+whenever Alt is pressed along with the right mouse button.
+.IP
+.EX
+$ xbuttonecho A 3 menu
+.EE
+.SH SEE ALSO
+.IR xbindecho (1),
+.IR xkeyecho (1),

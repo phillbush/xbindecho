@@ -1,0 +1,67 @@
+.TH XKEYECHO 1
+.SH NAME
+xkeyecho \- echo a line when pressing a key
+.SH SYNOPSIS
+.B xkeyecho
+.I modifiers keysym string
+.SH DESCRIPTION
+.B xkeyecho
+echoes a string to stdout when a given key is pressed.
+The first argument is the modifier that needs to be active when pressing the key.
+The second argument is the keysym of the key that is to be pressed.
+The third argument is the string to be echoed.
+.PP
+Keysym names are obtained from by removing the
+.B XK_
+prefix from each name.
+Keysyms are listed on
+.B include/X11/keysymdef.h
+(which is probably relative to the
+.B /usr
+or the
+.B /usr/X11R6
+directory).
+.PP
+.I modifiers
+is a sequence of characters that specify the modifiers
+(such as Mod1, Control, Shift, etc)
+that must be pressed along with the key that generates the keysyms.
+The following characters are recognized:
+.TP
+.B C
+Control.
+.TP
+.B L
+Lock (usually CapsLock).
+.TP
+.B S
+Shift.
+.TP
+.BR 1 " or " A
+Mod1 (usually Alt).
+.TP
+.B 2
+Mod2 (usually NumLock).
+.TP
+.B 3
+Mod3 (usually unbound).
+.TP
+.BR 4 " or " W
+Mod4 (usually Super/Winkey).
+.TP
+.B 5
+Mod5 (usually AltGR).
+.PP
+Keysyms corresponding to uppercase letters should also be modified by Shift
+(along with the modifiers defined at invocation).
+.SH EXAMPLES
+The following command echoes
+.RB \(lq help \(rq
+whenever Alt + Shift + H is pressed.
+.IP
+.EX
+$ xkeyecho A H help
+.EE
+.SH SEE ALSO
+.IR xbuttonecho (1),
+.IR xbindecho (1)

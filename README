@@ -1,0 +1,6 @@
+                             xbindecho, etc
+
+xbindecho, xkeyecho, and xbuttonecho are three utilities that echo
+something whenever a key (or mouse button) is pressed.
+
+This software is in public domain and is provided AS IS, with NO WARRANTY.
