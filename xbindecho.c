@@ -117,16 +117,22 @@ getbinds(unsigned int modifiers)
 	struct Bind *b;
 	unsigned int mods;
 	char buf[BUFSIZ];
-	char *kstr, *str;
+	char *s, *kstr, *str;
 
 	while (fgets(buf, sizeof buf, stdin) != NULL) {
 		if (*buf && *buf == '\n')
 			continue;
 		kstr = str = NULL;
+		mods = 0;
 		kstr = strtok(buf, "\t\n");
 		str = strtok(NULL, "\n");
+		if ((s = strchr(kstr, ':')) != NULL) {
+			*s = '\0';
+			mods = getmodifiers(kstr);
+			kstr = s + 1;
+		}
+		mods |= modifiers;
 		b = emalloc(sizeof *b);
-		mods = modifiers;
 		b->str = (str == NULL ? "" : estrdup(str));
 		b->kcode = getkeycode(kstr, &mods);
 		b->mods = mods;

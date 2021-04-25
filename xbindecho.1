@@ -8,7 +8,10 @@ xbindecho \- echo lines when pressing keys
 .B xbindecho
 echoes a string to stdout when a given key is pressed.
 It receives as standard input the list of keys and their corresponding strings, one per line.
-Each input line is composed by a keysym followed by a tab followed by a string to be echoed.
+Each input line is composed by an optional modifier,
+followed by keysym followed by a tab followed by a string to be echoed.
+The optional modifier is added to the list of modifiers supplied as argument;
+and must be followed by a colon.
 .B xbindecho
 gets as argument a modifier that should be applied to all key presses.
 .PP
@@ -60,7 +63,7 @@ The following shell command echoes
 .RB \(lq menu \(rq
 whenever Alt + m is pressed;
 .RB \(lq options \(rq
-whenever Alt + o is pressed;
+whenever Alt + Ctrl + o is pressed;
 and
 .RB \(lq help \(rq
 whenever Alt + Shift + H is pressed.
@@ -68,7 +71,7 @@ whenever Alt + Shift + H is pressed.
 .EX
 $ xbindecho A <<EOF
 m	menu
-o	options
+C:o	options
 H	help
 EOF
 .EE
