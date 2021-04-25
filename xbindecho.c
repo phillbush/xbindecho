@@ -124,7 +124,7 @@ getbinds(unsigned int modifiers)
 			continue;
 		kstr = str = NULL;
 		mods = 0;
-		kstr = strtok(buf, "\t\n");
+		kstr = strtok(buf, " \t\n");
 		str = strtok(NULL, "\n");
 		if ((s = strchr(kstr, ':')) != NULL) {
 			*s = '\0';
